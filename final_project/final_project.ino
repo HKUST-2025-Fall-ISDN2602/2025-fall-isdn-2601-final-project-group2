@@ -24,13 +24,18 @@ int angle5 = 90;
 // Amount to change per key press
 const int step = 5;
 
+// Calibrate pulse widths (microseconds) for full servo travel.
+// Adjust these if your servo needs different endpoints (typical ~500..2500).
+const int servoMinPulse = 500;
+const int servoMaxPulse = 2500;
+
 void setup() {
-  // Attach servos to pins
-  servo1.attach(servoPin1);
-  servo2.attach(servoPin2);
-  servo3.attach(servoPin3);
-  servo4.attach(servoPin4);
-  servo5.attach(servoPin5);
+  // Attach servos to pins (use calibrated min/max pulse to ensure full 0-180 range)
+  servo1.attach(servoPin1, servoMinPulse, servoMaxPulse);
+  servo2.attach(servoPin2, servoMinPulse, servoMaxPulse);
+  servo3.attach(servoPin3, servoMinPulse, servoMaxPulse);
+  servo4.attach(servoPin4, servoMinPulse, servoMaxPulse);
+  servo5.attach(servoPin5, servoMinPulse, servoMaxPulse);
 
   // Initialize to midpoint
   servo1.write(angle1);
@@ -48,6 +53,9 @@ void setup() {
   Serial.println("Ready. Use keys to control servos:");
   Serial.println("d/a = servo1 -/+ , s/w = servo2 -/+ , i/k = servo3 -/+ ");
   Serial.println("l/o = servo4 -/+ , q/e = servo5 -/+");
+
+  // Hardware reminder: if servos don't reach full travel, ensure servos have a proper power supply
+  // (external 5V source for many servos) and a common ground with the microcontroller.
 }
 
 void printAngles() {
