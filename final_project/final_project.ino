@@ -30,7 +30,8 @@ const int servoMinPulse = 500;
 const int servoMaxPulse = 2500;
 
 void setup() {
-  // Attach servos to pins (use calibrated min/max pulse to ensure full 0-180 range)
+  // Attach servos to pins (use calibrated min/max pulse to ensure full 0-180
+  // range)
   servo1.attach(servoPin1, servoMinPulse, servoMaxPulse);
   servo2.attach(servoPin2, servoMinPulse, servoMaxPulse);
   servo3.attach(servoPin3, servoMinPulse, servoMaxPulse);
@@ -54,8 +55,9 @@ void setup() {
   Serial.println("d/a = servo1 -/+ , s/w = servo2 -/+ , i/k = servo3 -/+ ");
   Serial.println("l/o = servo4 -/+ , q/e = servo5 -/+");
 
-  // Hardware reminder: if servos don't reach full travel, ensure servos have a proper power supply
-  // (external 5V source for many servos) and a common ground with the microcontroller.
+  // Hardware reminder: if servos don't reach full travel, ensure servos have a
+  // proper power supply (external 5V source for many servos) and a common
+  // ground with the microcontroller.
 }
 
 void printAngles() {
@@ -78,10 +80,10 @@ void printAngles() {
 
 // Clamp helper
 int clampAngle(int a) {
-  if (a < 0)
-    return 0;
-  if (a > 180)
-    return 180;
+  if (a < 5)
+    return 5;
+  if (a > 175)
+    return 175;
   return a;
 }
 
