@@ -22,7 +22,7 @@ int angle4 = 90;
 int angle5 = 90;
 
 // Amount to change per key press
-const int step = 5;
+const int step = 1;
 
 // Calibrate pulse widths (microseconds) for full servo travel.
 // Adjust these if your servo needs different endpoints (typical ~500..2500).
@@ -45,7 +45,7 @@ void setup() {
   servo4.write(angle4);
   servo5.write(angle5);
 
-  // Start serial for keyboard control
+  // Start serial for keyboard control 
   Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB boards
